@@ -7,8 +7,8 @@ function App() {
   ));
 
   return (
-    <div className="flex flex-col items-center py-64 bg-stone-100">
-      <div className="border-4 border-black  mx-4 mb-10 text-4xl text-stone-600 ">
+    <div className="flex flex-col items-center py-64 bg-stone-100 h-screen">
+      <div className=" mx-4 mb-10 text-4xl text-stone-600 ">
         Autumn's Fabulous Furniture
       </div>
       <div className="w-full max-w-2xl"> {furnitureItems}</div>
