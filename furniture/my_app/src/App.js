@@ -1,6 +1,7 @@
 import furnitures from "./furnitures";
 import FurnitureCard from "./Furniture/FurnitureCard";
 import { useState } from "react";
+import clsx from "clsx";
 
 const PAGE_SIZE = 5;
 
@@ -14,7 +15,20 @@ const App = () => {
 
   const pageButtons = [];
   for (let i = 0; i < numPages; i += 1) {
-    pageButtons.push(<button key={i} onClick={()=> setPageIdx(i)} className="mx-1 bg-stone-300 w-4 text-stone-600 text-sm rounded-sm">{i + 1} </button>);
+    pageButtons.push(
+      <button
+        key={i}
+        onClick={() => setPageIdx(i)}
+        className={clsx(
+          "mx-1 w-4  text-sm rounded-sm",
+          pageIdx === i
+            ? "bg-rose-200 text-rose-600 border border-rose-500"
+            : "bg-stone-300 text-stone-600"
+        )}
+      >
+        {i + 1}{" "}
+      </button>
+    );
   }
   return (
     <div className="flex flex-col items-center py-64 bg-stone-100 min-h-screen">
@@ -22,7 +36,9 @@ const App = () => {
         Autumn's Fabulous Furniture
       </div>
       <div className="w-full max-w-2xl">
-        <div className="flex justify-end border-b border-stone-300 px-8 py-2 ">{pageButtons}</div>
+        <div className="flex justify-end border-b border-stone-300 px-8 py-2 ">
+          {pageButtons}
+        </div>
 
         {furnitureItems}
       </div>
