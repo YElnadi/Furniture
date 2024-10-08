@@ -6,7 +6,9 @@ import clsx from "clsx";
 const PAGE_SIZE = 5;
 
 const App = () => {
-  const [text, setText] = useState("hello")
+  const [text, setText] = useState("hello");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [pageIdx, setPageIdx] = useState(0);
   const furnitureItems = furnitures
     .slice(PAGE_SIZE * pageIdx, PAGE_SIZE * (pageIdx + 1))
@@ -46,14 +48,40 @@ const App = () => {
     //   </div>
     // </div>
 
-    <div className="bg-gray-600 h-screen flex flex-col justify-center items-center">
-      <div className="text-3xl m-2">{text}</div>
-      <input
-      type="text"
-      value={text}
-      className="text-center p-2 rounded-lg"
-      onChange={(e)=>setText(e.target.value)}
-      />
+    /////********************controlled input */
+    // <div className="bg-gray-600 h-screen flex flex-col justify-center items-center">
+    //   <div className="text-3xl m-2">{text}</div>
+    //   <input
+    //   type="text"
+    //   value={text}
+    //   className="text-center p-2 rounded-lg"
+    //   onChange={(e)=>setText(e.target.value)}
+    //   />
+    // </div>
+
+    ///////**********Input Form */
+    <div className="flex justify-center p-20">
+      <div className="border-2 border-neutral-400 flex flex-col shadow-lg rounded-lg p-4">
+        <div className=" text-2xl mb-4 text-neutral-600">Sign-in</div>
+        <input
+          type="text"
+          className="border border-neutral-400 my-4 p-2 rounded-lg"
+          value={userName}
+          placeholder="enter username"
+          onChange={(e) => setUserName(e.target.value)}
+        />
+
+        <input
+          type="password"
+          className="border border-neutral-400 my-4 p-2 rounded-lg"
+          value={password}
+          placeholder="enter password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="border border-neutral-200 bg-red-400 p-2 rounded-md text-white ">
+          Submit
+        </button>
+      </div>
     </div>
   );
 };
