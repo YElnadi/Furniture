@@ -61,7 +61,13 @@ const App = () => {
 
     ///////**********Input Form */
     <div className="flex justify-center p-20">
-      <div className="border-2 border-neutral-400 flex flex-col shadow-lg rounded-lg p-4">
+      <form 
+      className="border-2 border-neutral-400 flex flex-col shadow-lg rounded-lg p-4"
+      onSubmit={(e)=>{
+        e.preventDefault()
+        console.log('form was submitted!')
+      }}
+      >
         <div className=" text-2xl mb-4 text-neutral-600">Sign-in</div>
         <input
           type="text"
@@ -81,7 +87,7 @@ const App = () => {
         <button className="border border-neutral-200 bg-red-400 p-2 rounded-md text-white ">
           Submit
         </button>
-      </div>
+      </form>
     </div>
   );
 };
