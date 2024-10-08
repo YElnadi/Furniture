@@ -6,6 +6,7 @@ import clsx from "clsx";
 const PAGE_SIZE = 5;
 
 const App = () => {
+  const [text, setText] = useState("hello")
   const [pageIdx, setPageIdx] = useState(0);
   const furnitureItems = furnitures
     .slice(PAGE_SIZE * pageIdx, PAGE_SIZE * (pageIdx + 1))
@@ -31,17 +32,28 @@ const App = () => {
     );
   }
   return (
-    <div className="flex flex-col items-center py-64 bg-stone-100 min-h-screen">
-      <div className=" mx-4 mb-10 text-4xl text-stone-600 ">
-        Autumn's Fabulous Furniture
-      </div>
-      <div className="w-full max-w-2xl">
-        <div className="flex justify-end border-b border-stone-300 px-8 py-2 ">
-          {pageButtons}
-        </div>
+    ///************* furniture */
+    // <div className="flex flex-col items-center py-64 bg-stone-100 min-h-screen">
+    //   <div className=" mx-4 mb-10 text-4xl text-stone-600 ">
+    //     Autumn's Fabulous Furniture
+    //   </div>
+    //   <div className="w-full max-w-2xl">
+    //     <div className="flex justify-end border-b border-stone-300 px-8 py-2 ">
+    //       {pageButtons}
+    //     </div>
 
-        {furnitureItems}
-      </div>
+    //     {furnitureItems}
+    //   </div>
+    // </div>
+
+    <div className="bg-gray-600 h-screen flex flex-col justify-center items-center">
+      <div className="text-3xl m-2">{text}</div>
+      <input
+      type="text"
+      value={text}
+      className="text-center p-2 rounded-lg"
+      onChange={(e)=>setText(e.target.value)}
+      />
     </div>
   );
 };
