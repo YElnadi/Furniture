@@ -99,8 +99,4 @@ export default App;
 //page 2: items 10 to 15
 // page 3 : items 15 to 20
 
-// formula to slice and display items correctly
-// page n : n * 5 to 5 * (n + 1)
-//helooo
-//helloworld
-//heeeellllloooogit
+
