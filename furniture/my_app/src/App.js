@@ -9,11 +9,12 @@ const PAGE_SIZE = 5;
 
 const App = () => {
   const [text, setText] = useState("");
+  const [filteredText, setFilteredText] = useState("")
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [pageIdx, setPageIdx] = useState(0);
 
-  const wordItems = words.filter((word) => word.includes(text))
+  const wordItems = words.filter((word) => word.includes(filteredText))
   .map((word, idx) => (
     <WordItem word={word} key={idx} />
   ));
@@ -100,7 +101,12 @@ const App = () => {
 
     /////*************WORD FILTER */
     <div className="flex flex-col items-center">
-      <form className="m-8 flex">
+      <form className="m-8 flex"
+      onSubmit={(e) =>{
+        e.preventDefault()
+        setFilteredText(text)
+      }}
+      >
         <input
           className="bg-neutral-200 p-2 rounded-l-lg"
           type="text"
