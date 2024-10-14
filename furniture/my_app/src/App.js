@@ -13,6 +13,14 @@ const App = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [pageIdx, setPageIdx] = useState(0);
+  const [messages, setMessages] = useState(["hello", "yasmine"]);
+
+  const messageItems = messages.map((message, idx) => (
+    <div key={idx} 
+    className="border border-gray-300 px-6 py-3 m-2 rounded-full text-gray-600">
+      {message}
+    </div>
+  ));
 
   const wordItems = words
     .filter((word) => word.includes(filteredText))
@@ -123,20 +131,21 @@ const App = () => {
     // </div>
 
     /////****************Message Project//////
-    <div className="flex flex-col items-center">
-      <form className="m-8">
+    <div className="flex justify-center">
+      {/* <form className="m-8">
         <input
           className=" bg-white rounded-lg px-6 py-4 w-96 border border-neutral-300 "
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button className="ml-4 bg-purple-200 text-purple-600 px-6 py-4 rounded-lg">Submit</button>
-      </form>
-      <div className="bg-white rounded-full px-6 py-4 w-2/5 border border-neutral-300">
-        {text}
+        <button className="ml-4 bg-purple-200 text-purple-600 px-6 py-4 rounded-lg">
+          Submit
+        </button>
+      </form> */}
+      <div className="flex flex-col max-w-md w-full">
+        {messageItems}
       </div>
-      
     </div>
   );
 };
