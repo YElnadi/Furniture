@@ -8,16 +8,15 @@ import words from "./WordFilter/words";
 const PAGE_SIZE = 5;
 
 const App = () => {
-  const [text, setText] = useState("");
-  const [filteredText, setFilteredText] = useState("")
+  const [text, setText] = useState("hi");
+  const [filteredText, setFilteredText] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [pageIdx, setPageIdx] = useState(0);
 
-  const wordItems = words.filter((word) => word.includes(filteredText))
-  .map((word, idx) => (
-    <WordItem word={word} key={idx} />
-  ));
+  const wordItems = words
+    .filter((word) => word.includes(filteredText))
+    .map((word, idx) => <WordItem word={word} key={idx} />);
 
   const furnitureItems = furnitures
     .slice(PAGE_SIZE * pageIdx, PAGE_SIZE * (pageIdx + 1))
@@ -100,27 +99,44 @@ const App = () => {
     // </div>
 
     /////*************WORD FILTER */
+    // <div className="flex flex-col items-center">
+    //   <form className="m-8 flex"
+    //   onSubmit={(e) =>{
+    //     e.preventDefault()
+    //     setFilteredText(text)
+    //   }}
+    //   >
+    //     <input
+    //       className="bg-neutral-200 p-2 rounded-l-lg"
+    //       type="text"
+    //       value={text}
+    //       onChange={(e) => setText(e.target.value)}
+    //     />
+    //     <button className="bg-emerald-400 text-white rounded-r-lg px-4 hover:bg-emerald-600">
+    //       {" "}
+    //       Filter
+    //     </button>
+    //   </form>
+    //   <div className="flex flex-wrap justify-center w-full max-w-lg">
+    //     {wordItems}
+    //   </div>
+    // </div>
+
+    /////****************Message Project//////
     <div className="flex flex-col items-center">
-      <form className="m-8 flex"
-      onSubmit={(e) =>{
-        e.preventDefault()
-        setFilteredText(text)
-      }}
-      >
+      <form className="m-8">
         <input
-          className="bg-neutral-200 p-2 rounded-l-lg"
+          className=" bg-white rounded-lg px-6 py-4 w-96 border border-neutral-300 "
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button className="bg-emerald-400 text-white rounded-r-lg px-4 hover:bg-emerald-600">
-          {" "}
-          Filter
-        </button>
+        <button className="ml-4 bg-purple-200 text-purple-600 px-6 py-4 rounded-lg">Submit</button>
       </form>
-      <div className="flex flex-wrap justify-center w-full max-w-lg">
-        {wordItems}
+      <div className="bg-white rounded-full px-6 py-4 w-2/5 border border-neutral-300">
+        {text}
       </div>
+      
     </div>
   );
 };
