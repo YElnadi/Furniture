@@ -143,6 +143,7 @@ const App = () => {
         onSubmit={(e) => {
           e.preventDefault();
           setMessages([...messages, text]);
+          setText("")
         }}
       >
         <input
