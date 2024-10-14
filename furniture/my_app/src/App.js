@@ -2,6 +2,8 @@ import furnitures from "./furnitures";
 import FurnitureCard from "./Furniture/FurnitureCard";
 import { useState } from "react";
 import clsx from "clsx";
+import WordItem from "./WordFilter/WordItem";
+import words from "./WordFilter/words";
 
 const PAGE_SIZE = 5;
 
@@ -10,6 +12,11 @@ const App = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [pageIdx, setPageIdx] = useState(0);
+
+  const wordItems = words.map((word, idx) => (
+    <WordItem word={word} key={idx} />
+  ));
+
   const furnitureItems = furnitures
     .slice(PAGE_SIZE * pageIdx, PAGE_SIZE * (pageIdx + 1))
     .map((furniture, idx) => <FurnitureCard key={idx} furniture={furniture} />);
@@ -60,34 +67,41 @@ const App = () => {
     // </div>
 
     ///////**********Input Form */
-    <div className="flex justify-center p-20">
-      <form 
-      className="border-2 border-neutral-400 flex flex-col shadow-lg rounded-lg p-4"
-      onSubmit={(e)=>{
-        e.preventDefault()
-        console.log('form was submitted!')
-      }}
-      >
-        <div className=" text-2xl mb-4 text-neutral-600">Sign-in</div>
-        <input
-          type="text"
-          className="border border-neutral-400 my-4 p-2 rounded-lg"
-          value={userName}
-          placeholder="enter username"
-          onChange={(e) => setUserName(e.target.value)}
-        />
+    // <div className="flex justify-center p-20">
+    //   <form
+    //   className="border-2 border-neutral-400 flex flex-col shadow-lg rounded-lg p-4"
+    //   onSubmit={(e)=>{
+    //     e.preventDefault()
+    //     console.log('form was submitted!')
+    //   }}
+    //   >
+    //     <div className=" text-2xl mb-4 text-neutral-600">Sign-in</div>
+    //     <input
+    //       type="text"
+    //       className="border border-neutral-400 my-4 p-2 rounded-lg"
+    //       value={userName}
+    //       placeholder="enter username"
+    //       onChange={(e) => setUserName(e.target.value)}
+    //     />
 
-        <input
-          type="password"
-          className="border border-neutral-400 my-4 p-2 rounded-lg"
-          value={password}
-          placeholder="enter password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className="border border-neutral-200 bg-red-400 p-2 rounded-md text-white ">
-          Submit
-        </button>
-      </form>
+    //     <input
+    //       type="password"
+    //       className="border border-neutral-400 my-4 p-2 rounded-lg"
+    //       value={password}
+    //       placeholder="enter password"
+    //       onChange={(e) => setPassword(e.target.value)}
+    //     />
+    //     <button className="border border-neutral-200 bg-red-400 p-2 rounded-md text-white ">
+    //       Submit
+    //     </button>
+    //   </form>
+    // </div>
+
+    /////*************WORD FILTER */
+    <div className="flex flex-col items-center">
+      <div className="flex flex-wrap justify-center w-full max-w-lg">
+        {wordItems}
+      </div>
     </div>
   );
 };
