@@ -8,16 +8,22 @@ import words from "./WordFilter/words";
 const PAGE_SIZE = 5;
 
 const App = () => {
-  const [text, setText] = useState("hi");
+  const [text, setText] = useState("");
   const [filteredText, setFilteredText] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [pageIdx, setPageIdx] = useState(0);
-  const [messages, setMessages] = useState(["hello", "yasmine"]);
+  const [messages, setMessages] = useState([
+    "hello",
+    "yasmine",
+    "Good morning!",
+  ]);
 
   const messageItems = messages.map((message, idx) => (
-    <div key={idx} 
-    className="border border-gray-300 px-6 py-3 m-2 rounded-full text-gray-600">
+    <div
+      key={idx}
+      className="border border-gray-300 px-6 py-3 m-2 rounded-full text-gray-600"
+    >
       {message}
     </div>
   ));
@@ -131,21 +137,26 @@ const App = () => {
     // </div>
 
     /////****************Message Project//////
-    <div className="flex justify-center">
-      {/* <form className="m-8">
+    <div className="flex flex-col items-center">
+      <form
+        className="m-8 flex"
+        onSubmit={(e) => {
+          e.preventDefault();
+          setMessages([...messages, text]);
+        }}
+      >
         <input
-          className=" bg-white rounded-lg px-6 py-4 w-96 border border-neutral-300 "
+          className=" bg-white rounded-lg px-6 py-4 w-80 border border-neutral-300 foucs:outline-purple-600"
           type="text"
           value={text}
+          placeholder="send a message"
           onChange={(e) => setText(e.target.value)}
         />
-        <button className="ml-4 bg-purple-200 text-purple-600 px-6 py-4 rounded-lg">
+        <button className="ml-4 bg-purple-200 text-purple-800 px-6 py-4 rounded-lg">
           Submit
         </button>
-      </form> */}
-      <div className="flex flex-col max-w-md w-full">
-        {messageItems}
-      </div>
+      </form>
+      <div className="flex flex-col max-w-md w-full">{messageItems}</div>
     </div>
   );
 };
