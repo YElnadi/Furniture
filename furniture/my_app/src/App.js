@@ -8,12 +8,13 @@ import words from "./WordFilter/words";
 const PAGE_SIZE = 5;
 
 const App = () => {
-  const [text, setText] = useState("hello");
+  const [text, setText] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [pageIdx, setPageIdx] = useState(0);
 
-  const wordItems = words.map((word, idx) => (
+  const wordItems = words.filter((word) => word.includes(text))
+  .map((word, idx) => (
     <WordItem word={word} key={idx} />
   ));
 
@@ -99,6 +100,18 @@ const App = () => {
 
     /////*************WORD FILTER */
     <div className="flex flex-col items-center">
+      <form className="m-8 flex">
+        <input
+          className="bg-neutral-200 p-2 rounded-l-lg"
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <button className="bg-emerald-400 text-white rounded-r-lg px-4 hover:bg-emerald-600">
+          {" "}
+          Filter
+        </button>
+      </form>
       <div className="flex flex-wrap justify-center w-full max-w-lg">
         {wordItems}
       </div>
